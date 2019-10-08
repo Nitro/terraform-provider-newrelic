@@ -191,13 +191,24 @@ func readNrqlAlertConditionStruct(condition *newrelic.AlertNrqlCondition, d *sch
 	d.Set("name", condition.Name)
 	d.Set("runbook_url", condition.RunbookURL)
 	d.Set("enabled", condition.Enabled)
-	d.Set("nrql.0.Query", condition.Nrql.Query)
-	d.Set("nrql.0.SinceValue", condition.Nrql.SinceValue)
 
 	if condition.ValueFunction == "" {
 		d.Set("value_function", "single_value")
 	} else {
 		d.Set("value_function", condition.ValueFunction)
+	}
+
+	var nrql []map[string]interface{}
+
+	query := map[string]interface{}{
+		"query":       condition.Nrql.Query,
+		"since_value": condition.Nrql.SinceValue,
+	}
+
+	nrql = append(nrql, query)
+
+	if err := d.Set("nrql", nrql); err != nil {
+		return fmt.Errorf("[DEBUG] Error setting alert condition terms: %#v", err)
 	}
 
 	var terms []map[string]interface{}

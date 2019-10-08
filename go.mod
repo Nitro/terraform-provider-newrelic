@@ -12,7 +12,14 @@ require (
 	github.com/pkg/errors v0.8.1 // indirect
 	github.com/ulikunitz/xz v0.5.6 // indirect
 	github.com/vmihailenco/msgpack v4.0.4+incompatible // indirect
-	golang.org/x/sys v0.0.0-20190710143415-6ec70d6a5542 // indirect
+	golang.org/x/net v0.0.0-20191003171128-d98b1b443823 // indirect
+	golang.org/x/sys v0.0.0-20191007092633-5f54ce542709 // indirect
 	google.golang.org/genproto v0.0.0-20190219182410-082222b4a5c5 // indirect
 	gopkg.in/jarcoal/httpmock.v1 v1.0.0-20190204112747-618f46f3f0c8 // indirect
 )
+
+replace golang.org/x/net v0.0.0-20190225175257-fe579d43d832 => golang.org/x/net v0.0.0-20191003171128-d98b1b443823
+
+replace golang.org/x/sys v0.0.0-20190302045720-b6889370fb10 => golang.org/x/sys v0.0.0-20191007092633-5f54ce542709
+
+go 1.13
